@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=side\ world
+comment0.target=Warning(int,\ TheWorld)
+comment1.params=
+comment1.target=void\ act()
+numComments=2
