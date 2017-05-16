@@ -57,7 +57,9 @@ public class TheWorld extends World
     void movePlayer(){
         try{
             int button = Greenfoot.getMouseInfo().getButton();
-            if(button == 1){
+            int getX = Greenfoot.getMouseInfo().getX();
+            int getY = Greenfoot.getMouseInfo().getY();
+            if(button == 1 && getX > 0 && getX < getWidth() && getY > 0 && getY < getHeight()){
                 removeObjects(getObjects(Marker.class));
                 addObject(new Marker(), Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
             }
