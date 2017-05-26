@@ -26,6 +26,7 @@ public class Flash extends Actor
         tp -= 5;
         if(tp == 0){
             getWorld().addObject(new RestartButton(), 400, 50);
+            getWorld().addObject(new BackButton(), 400, 390);
             getWorld().removeObject(this);
         }
 

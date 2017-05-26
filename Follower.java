@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Follows player for a short amount of time
+ * Follows player for a short amount of time. Appears when score >= 150
  * 
  * @author Enoch Poon
  * 

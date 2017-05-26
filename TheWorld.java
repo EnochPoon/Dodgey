@@ -32,7 +32,8 @@ public class TheWorld extends World
         player = new Player();
         addObject(player, getWidth()/2, getHeight()/2);
         addObject(new ScoreText(), 100, 50);
-        setPaintOrder(RestartButton.class, ScoreText.class, Flash.class, Scope.class, Obstacle.class, Player.class);
+        addObject(new Fader(), getWidth()/2, getHeight()/2);
+        setPaintOrder(Fader.class, BackButton.class, RestartButton.class, ScoreText.class, Flash.class, Scope.class, Obstacle.class, Player.class);
     }
 
     public void act(){
@@ -42,13 +43,6 @@ public class TheWorld extends World
             obSpeed = Math.max(3, Math.min((int)score / 20, 30));
             //move player
             movePlayer();
-            //             if(Greenfoot.mousePressed(this)){
-            //                 pressing = true;
-            //             }
-            //             if(pressing)movePlayer();
-            //             if(Greenfoot.getMouseInfo().getButton() == 0){//Greenfoot.mouseClicked(this) || Greenfoot.mouseClicked(player) || Greenfoot.mouseDragEnded(this) || Greenfoot.mouseDragEnded(player)){
-            //                 pressing = false;
-            //             }
             timer++;
             if(timer >= maxTimer)summonObstacle();
         }

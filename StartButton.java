@@ -1,19 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 /**
- * Write a description of class RestartButton here.
+ * Write a description of class StartButton here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class RestartButton extends Actor
+public class StartButton extends Actor
 {
-    public RestartButton(){
-        setImage(new GreenfootImage("Click here to restart.", 40, Color.BLACK, Color.WHITE));
-        getImage().setTransparency(100);
+    public StartButton(){
+        setImage(new GreenfootImage("Click here to begin", 50, Color.RED, Color.BLACK));
     }
     /**
-     * Act - do whatever the RestartButton wants to do. This method is called whenever
+     * Act - do whatever the StartButton wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
