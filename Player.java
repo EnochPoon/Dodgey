@@ -26,7 +26,7 @@ public class Player extends Actor
         if(!TheWorld.stop)getWorld().addObject(new Flash(), getWorld().getWidth() / 2, getWorld().getHeight() / 2);
         TheWorld.stop = true;
         getWorld().removeObjects(getWorld().getObjects(Marker.class));
-
+        
     }
 
     void move(){

@@ -33,7 +33,7 @@ public class TheWorld extends World
         addObject(player, getWidth()/2, getHeight()/2);
         addObject(new ScoreText(), 100, 50);
         addObject(new Fader(), getWidth()/2, getHeight()/2);
-        setPaintOrder(Fader.class, BackButton.class, RestartButton.class, ScoreText.class, Flash.class, Scope.class, Obstacle.class, Player.class);
+        setPaintOrder(Fader.class, FrontMessage.class, Flash.class, Scope.class, Obstacle.class, Player.class);
     }
 
     public void act(){
@@ -82,5 +82,9 @@ public class TheWorld extends World
 
     public void cheat(int score){
         this.score = score;
+    }
+    
+    static int getCoins(){
+        return (int)score / 50;
     }
 }

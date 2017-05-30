@@ -9,7 +9,7 @@ import java.awt.Color;
 public class ShopButton extends Actor
 {
     public ShopButton(){
-        setImage(new GreenfootImage("\nShop\n(this button doesn't actually work rn)\n ", 20, Color.BLUE, Color.WHITE));
+        setImage(new GreenfootImage("\nShop\n(this button doesn't actually work rn)\nCoins: " + Data.coins, 20, Color.BLUE, Color.WHITE));
     }
     /**
      * Act - do whatever the ShopButton wants to do. This method is called whenever

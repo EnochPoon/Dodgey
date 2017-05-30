@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class HighScoreText here.
+ * Write a description of class FrontMessage here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class HighScoreText extends Actor
+public class FrontMessage extends Actor
 {
     /**
-     * Act - do whatever the HighScoreText wants to do. This method is called whenever
+     * Act - do whatever the FrontMessage wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 

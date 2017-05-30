@@ -6,7 +6,7 @@ import java.awt.Color;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class BackButton extends Actor
+public class BackButton extends FrontMessage
 {
     public BackButton(){
         setImage(new GreenfootImage("Click here to go back", 20, Color.BLACK, Color.WHITE));

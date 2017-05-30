@@ -6,7 +6,7 @@ import java.awt.Color;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class RestartButton extends Actor
+public class RestartButton extends FrontMessage
 {
     public RestartButton(){
         setImage(new GreenfootImage("Click here to restart.", 40, Color.BLACK, Color.WHITE));
