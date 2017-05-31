@@ -85,6 +85,6 @@ public class TheWorld extends World
     }
     
     static int getCoins(){
-        return (int)score / 50;
+        return (int)score / 10;
     }
 }
