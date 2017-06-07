@@ -11,7 +11,7 @@ public class Spikeball extends Obstacle
 {
     int side;
     int slant;
-    int path;//0 = linear, 1 = parabola, 2 = sinusoidal
+    int path;//0 = linear, 1 = curve, 2 = sinusoidal
     int amplitude;
     double time = 0.0;
     Random r = new Random();
@@ -20,7 +20,7 @@ public class Spikeball extends Obstacle
     double getX;
     double getY;
     public Spikeball(int side, World world, int path){
-		//speed = TheWorld.obSpeed;
+		
         switch(side){
             case 0:
             world.addObject(this, r.nextInt(world.getWidth()), -5);
@@ -54,6 +54,10 @@ public class Spikeball extends Obstacle
         switch(path){
             case 0://linear
             speed = TheWorld.obSpeed;
+            List<Actor> list = world.getObjects(Player.class);
+            if(!list.isEmpty() && r.nextInt(3) == 0){
+                turnTowards(list.get(0).getX(), list.get(0).getY());
+            }
             break;
 
             case 1://parabola
