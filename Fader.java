@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.awt.Color;
+
 /**
  * Write a description of class Fader here.
  * 
@@ -18,8 +18,6 @@ public class Fader extends Actor
         getImage().setTransparency(250);
     }
     public Fader(World next){
-        getImage().setColor(Color.BLACK);
-        getImage().fill();
         getImage().scale(1000, 1000);
         fadeIn = true;
         getImage().setTransparency(0);
@@ -31,6 +29,8 @@ public class Fader extends Actor
      */
     public void act() 
     {
+        getImage().setColor(Color.BLACK);
+        getImage().fill();
         if(fadeIn){//darken screen
             if(getImage().getTransparency() >= 250)Greenfoot.setWorld(next);
             else getImage().setTransparency(getImage().getTransparency() + 25);

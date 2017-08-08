@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.awt.Color;
+
 /**
  * Write a description of class CoinMessage here.
  * 
@@ -10,7 +10,7 @@ public class CoinMessage extends FrontMessage
 {
     int timer = 255;
     public CoinMessage(int coins){
-        setImage(new GreenfootImage("You gained " + coins + " coins!", 20, Color.YELLOW, null));
+        setImage(new GreenfootImage("You gained " + coins + " coins!", 20, Color.YELLOW, new Color(0,0,0,0)));
         Data.update((int)TheWorld.score, coins);
         if(coins == 0){
             timer = 0;

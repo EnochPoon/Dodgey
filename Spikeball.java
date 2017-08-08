@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
-import java.awt.Color;
+
 /**
  * Most common obstacle. Can move in line, parabola, or sinusoidal function
  * 
@@ -54,7 +54,7 @@ public class Spikeball extends Obstacle
         switch(path){
             case 0://linear
             speed = TheWorld.obSpeed;
-            List<Actor> list = world.getObjects(Player.class);
+            List<Player> list = world.getObjects(Player.class);
             if(!list.isEmpty() && r.nextInt(3) == 0){
                 turnTowards(list.get(0).getX(), list.get(0).getY());
             }

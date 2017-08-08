@@ -16,16 +16,19 @@ public class TheWorld extends World
     static int obSpeed;
     boolean pressing = false;
     Random r = new Random();
+    boolean start = true; // first thing to do
     public TheWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1, false);
+        prepare();
         score = 0.0;
         obSpeed = 3;
         timer = 0;
         maxTimer = 0;
         stop = false;
-        prepare();
+        setActOrder(TheWorld.class);
+       
     }
 
     public void prepare(){
@@ -37,7 +40,13 @@ public class TheWorld extends World
     }
 
     public void act(){
+        // if(start){
+            // start = false;
+            // prepare();
+        // }
+        
         if(!stop){
+            
             score += 0.1;
             maxTimer = Math.max(1000 / ((int)score + 1), 10);
             obSpeed = Math.max(3, Math.min((int)score / 20, 30));

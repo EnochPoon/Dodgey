@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.awt.Color;
+
 import java.util.*;
 /**
  * The Score and high score are posted here
@@ -13,13 +13,13 @@ public class ScoreText extends FrontMessage
     static int highscore = 0;
     public ScoreText(){
         highscore = Data.highscore;
-        setImage(new GreenfootImage("Score: " + score + "\nHigh Score: " + highscore, 20, Color.BLACK, null));
+        setImage(new GreenfootImage("Score: " + score + "\nHigh Score: " + highscore, 20, Color.BLACK, new Color(0,0,0,0)));
     }
     public void act() 
     {
         score = (int)TheWorld.score;
         highscore = Math.max(score, highscore);
-        setImage(new GreenfootImage("Score: " + score + "\nHigh Score: " + highscore, 20, Color.BLACK, null));
+        setImage(new GreenfootImage("Score: " + score + "\nHigh Score: " + highscore, 20, Color.BLACK, new Color(0,0,0,0)));
         
     }    
 }
