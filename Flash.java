@@ -27,7 +27,7 @@ public class Flash extends Actor
         if(tp == 0){
             getWorld().addObject(new RestartButton(), 400, 50);
             getWorld().addObject(new BackButton(), 400, 390);
-            getWorld().addObject(new CoinMessage(TheWorld.getCoins()), 100, 390);
+            getWorld().addObject(new CoinMessage(TheWorld.getScore()/10), 100, 390);
             getWorld().removeObject(this);
         }
 

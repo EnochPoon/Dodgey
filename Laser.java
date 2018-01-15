@@ -9,24 +9,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Laser extends Obstacle
 {
     int tp = 255;
-    public Laser(int side){
+    public Laser(int speed, boolean isRotated){
+        super(speed);
         getImage().scale(2000, 50);
-        if(side < 2)turn(90);
+        if(isRotated)turn(90);
     }
     
-    /**
-     * Act - do whatever the Laser wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
+    @Override
+    public void work() 
     {
         getImage().setTransparency(tp);
-        if(!TheWorld.stop)tp -= 15;
-        if(tp <= 0)getWorld().removeObject(this);
-        
-        if(Greenfoot.mousePressed(this)){
-            TheWorld theworld = (TheWorld)getWorld();
-            theworld.movePlayer();
-        }
+        tp -= 25;
     }    
+    
+    @Override
+    public void destroy(){
+        if(tp <= 0)getWorld().removeObject(this);
+    }
 }

@@ -6,23 +6,29 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Enoch Poon
  * 
  */
-public class FollowerWarning extends Actor
+public class FollowerWarning extends Obstacle
 {
-    int tp = 0;
-    int speed;
-    public FollowerWarning(int speed){
+    private int tp;
+    private int time;
+    public FollowerWarning(int speed, int time){
+        super(speed, false);
+        this.time = time;
         getImage().setTransparency(0);
         getImage().scale(30, 30);
-        this.speed = speed;
+        
     }
-    
-    public void act() 
+
+    @Override
+    public void work() 
     {
         if(tp <= 255)getImage().setTransparency(tp);
-        else{
-            getWorld().addObject(new Follower(speed / 2), getX(), getY());
+        tp += speed;
+    }    
+
+    public void destroy(){
+        if(tp > 255){
+            getWorld().addObject(new Follower(speed / 3, time), getX(), getY());
             getWorld().removeObject(this);
         }
-        if(!TheWorld.stop)tp += speed;
-    }    
+    }
 }

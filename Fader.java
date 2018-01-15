@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Fader extends Actor
 {
-    boolean fadeIn;
-    World next;
+    private boolean fadeIn;
+    private World next;
     public Fader(){
         getImage().setColor(Color.BLACK);
         getImage().fill();
@@ -36,7 +36,7 @@ public class Fader extends Actor
             else getImage().setTransparency(getImage().getTransparency() + 25);
         }else{
             if(getImage().getTransparency() == 0){
-                TheWorld.stop = false;
+                //TheWorld.stop = false;
                 getWorld().removeObject(this);
             }
             else getImage().setTransparency(getImage().getTransparency() - 25);

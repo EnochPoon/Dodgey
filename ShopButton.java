@@ -1,20 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ShopButton here.
+ * Button to the Shop
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Enoch Poon
+ * 
  */
 public class ShopButton extends Actor
 {
     public ShopButton(){
-        setImage(new GreenfootImage("\nShop\n(this button doesn't actually work rn)\nCoins: " + Data.coins, 20, Color.BLUE, Color.WHITE));
+        setImage(new GreenfootImage("\nShop\n(Work In Progress)\nCoins: " + Data.coins, 20, Color.BLUE, Color.WHITE));
     }
-    /**
-     * Act - do whatever the ShopButton wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     public void act() 
     {
         // Add your action code here.

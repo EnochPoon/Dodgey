@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class BackButton here.
+ * Click to go back to the Main Menu
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Enoch Poon
+ *
  */
 public class BackButton extends FrontMessage
 {

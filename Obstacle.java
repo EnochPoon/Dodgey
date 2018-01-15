@@ -6,24 +6,59 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Enoch Poon
  * 
  */
-public class Obstacle extends Actor
+public abstract class Obstacle extends Actor
 {
-    // 0 = top, 1 = bot, 2 = left, 3 = right
-    boolean entered = false;
+    protected boolean entered;
+    protected int speed;
+    protected boolean isDeadly;
+    private double x;
+    private double y;
+    private boolean start = true;
+    public Obstacle(int speed){
+        this.speed = speed;
+        isDeadly = true;
+    }
+
+    public Obstacle(int speed, boolean isDeadly){
+        this.speed = speed;
+        this.isDeadly = isDeadly;
+    }
 
     public void act() 
     {
+        if(start){
+            x = getX();
+            y = getY();
+            start = false;
+        }
 
-        //if(Greenfoot.mousePressed(this)){
-        //    TheWorld theworld = (TheWorld)getWorld();
-        //    theworld.movePlayer();
-        //}
-        destroy();
+        if(!TheWorld.isStopped())work();
+        if(!TheWorld.isStopped())destroy();
     }
 
+    public abstract void work();
+
+    @Override
+    public void move(int speed){
+        x += Math.cos(Math.toRadians(getRotation())) * speed;
+        y += Math.sin(Math.toRadians(getRotation())) * speed;
+        setLocation((int)Math.round(x), (int)Math.round(y));
+    }
+    
+    @Override
+    public void setLocation(int x, int y){
+        this.x = x;
+        this.y = y;
+        super.setLocation(x, y);
+    }
+    
     public void destroy(){
-        if(getX() < -10 || getY() < -10 || getX() > getWorld().getWidth() + 10 || getY() > getWorld().getHeight() + 10){
+        if(getX() < -20 || getY() < -20 || getX() > getWorld().getWidth() + 20 || getY() > getWorld().getHeight() + 20){
             getWorld().removeObject(this);
         }
+    }
+    
+    public boolean isDeadly(){
+        return isDeadly;
     }
 }

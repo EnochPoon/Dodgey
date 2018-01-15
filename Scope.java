@@ -3,10 +3,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Locks on to player, delays, and fires. Appears when score >= 200
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Enoch Poon
+ * 
  */
-public class Scope extends Actor
+public class Scope extends Obstacle
 {
     private int length = 80;
     private boolean f = false;
@@ -15,47 +15,57 @@ public class Scope extends Actor
     private int fire = 5;
     int ftime = 5;
     boolean shotfired = false;
-    public void act() 
-    {
-        if(!TheWorld.stop){
-            getImage().scale(length, length);
-            if(length!=75){
-                length--;
-            }else{
-                f=true;
-            }
-            if(f){
-                time--;
-            }
-            if(time == 0){
-                if(flash==true){
-                    getImage().setTransparency(0);
-                    flash = false;
-                }else{
-                    getImage().setTransparency(255);
-                    flash = true;
-                }
-                time = 5;
-                fire--;
-            }
+    public Scope(int speed){
+        super(speed, false);
+        
+    }
 
-            if(fire == 0 && !shotfired){
-                f = false;
-                time = 1;
-                setImage("explode.png");
-                //getImage().scale(10,10);
-                length = 25;
-                Player p = (Player)getOneObjectAtOffset(0,0, Player.class);
-                if(p != null){
-                    p.death();
-                }
-                shotfired = true;
+    @Override
+    public void work() 
+    {
+
+        getImage().scale(length, length);
+        if(length!=75){
+            length--;
+        }else{
+            f=true;
+        }
+        if(f){
+            time--;
+        }
+        if(time == 0){
+            if(flash==true){
+                getImage().setTransparency(0);
+                flash = false;
+            }else{
+                getImage().setTransparency(255);
+                flash = true;
             }
-            if(shotfired){
-                ftime--;
-                if(ftime == 0){
-                    getWorld().removeObject(this);
-                }
+            time = 5;
+            fire--;
+        }
+
+        if(fire == 0 && !shotfired){
+            f = false;
+            time = 1;
+            setImage("explode.png");
+            //getImage().scale(10,10);
+            length = 25;
+            Player p = (Player)getOneObjectAtOffset(0,0, Player.class);
+            if(p != null){
+                p.death();
+            }
+            shotfired = true;
+        }
+        
+
+    }
+    
+    public void destroy(){
+        if(shotfired){
+            ftime--;
+            if(ftime == 0){
+                getWorld().removeObject(this);
             }
         }
     }

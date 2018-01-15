@@ -8,37 +8,44 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Follower extends Obstacle
 {
-    final int fullsize = 20;
-    final int time = 300;
-    int size = 1;
-    int timer = 0;
-    int speed;
-    public Follower(int speed){
-        getImage().scale(1, 1);
-        this.speed = speed;
+    private final int fullsize = 20;
+    private final int time;
+    private int timer = 0;
+    private boolean fadeIn = true;
+    public Follower(int speed, int time){
+        super(speed);
+        this.time = time;
+        getImage().setTransparency(25);
     }
-    /**
-     * Act - do whatever the Follower wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
+
+    @Override
+    public void work() 
     {
-        if(!TheWorld.stop){
-            turnTowards(((TheWorld)getWorld()).player.getX(), ((TheWorld)getWorld()).player.getY());
-            move(speed);
-            if(size <= fullsize){
-                setImage(new GreenfootImage("PinkCircle.png"));
-                getImage().scale(size, size);
-                size += 4;
-            }
-            timer++;
-            if(timer == time){
-                getWorld().removeObject(this);
-                return;
-            }
+
+        try{
+            Actor player = getWorld().getObjects(Player.class).get(0);
+            turnTowards(player.getX(), player.getY());
+        }catch(Exception e){
+            e.printStackTrace();
         }
+
+        move(speed);
+        if(getImage().getTransparency() != 255 && fadeIn)getImage().setTransparency(Math.min(255, getImage().getTransparency() + 25));
+        else if(getImage().getTransparency() == 255)fadeIn = false;
+        timer++;
+        if(timer >= time){
+            isDeadly = false;
+            getImage().setTransparency(getImage().getTransparency() - 25);
+        }
+            
         
-        //LAST PART
-        super.act();
+
     }    
+    
+    public void destroy(){
+        if(timer >= time + 9){
+            
+            getWorld().removeObject(this);
+        }
+    }
 }

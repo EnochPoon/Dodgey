@@ -14,22 +14,31 @@ public class Player extends Actor
      */
     public void act() 
     {
-        if(getObjectsInRange(getImage().getWidth() - 5, Obstacle.class).size() > 0)death();
-        if(isTouching(Laser.class))death();
-
+        for(Actor a : getObjectsInRange(getImage().getWidth() - 5, Obstacle.class)){
+            if(((Obstacle)a).isDeadly()){
+                death();
+                return;
+            }
+        }
+        
+        if(isTouching(Laser.class)){
+            death();
+            return;
+        }
+        
         if(getWorld().getObjects(Marker.class).size() > 0){
             move();
         }
     }    
 
-    void death(){
-        if(!TheWorld.stop)getWorld().addObject(new Flash(), getWorld().getWidth() / 2, getWorld().getHeight() / 2);
-        TheWorld.stop = true;
+    public void death(){
+        if(!TheWorld.isStopped())getWorld().addObject(new Flash(), getWorld().getWidth() / 2, getWorld().getHeight() / 2);
+        TheWorld.stop();
         getWorld().removeObjects(getWorld().getObjects(Marker.class));
         
     }
 
-    void move(){
+    public void move(){
         Marker marker = (Marker)getWorld().getObjects(Marker.class).get(0);
         double speed = (Math.abs((double)(getX() - marker.getX())) + Math.abs((double)(getY() - marker.getY())))/10.0;
         turnTowards(marker.getX(), marker.getY());

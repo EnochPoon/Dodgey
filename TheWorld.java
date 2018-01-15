@@ -8,27 +8,22 @@ import java.util.*;
  */
 public class TheWorld extends World
 {
-    Player player;
-    static double score = 0.0;
-    static boolean stop = false;
-    int timer = 0;
-    int maxTimer;
-    static int obSpeed;
-    boolean pressing = false;
-    Random r = new Random();
-    boolean start = true; // first thing to do
+    private Player player;
+    private static double score = 0.0;
+    private static boolean stopped = true;
+    private int timer = 0;
+    private int maxTimer;
+    private boolean start = true; // first thing to do
     public TheWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1, false);
         prepare();
         score = 0.0;
-        obSpeed = 3;
         timer = 0;
         maxTimer = 0;
-        stop = false;
-        setActOrder(TheWorld.class);
-       
+        //setActOrder(TheWorld.class);
+
     }
 
     public void prepare(){
@@ -40,24 +35,22 @@ public class TheWorld extends World
     }
 
     public void act(){
-        // if(start){
-            // start = false;
-            // prepare();
-        // }
-        
-        if(!stop){
-            
+        if(start && getObjects(Fader.class).size() == 0){
+            start = false;
+            stopped = false;
+        }
+
+        if(!stopped){
+
             score += 0.1;
-            maxTimer = Math.max(1000 / ((int)score + 1), 10);
-            obSpeed = Math.max(3, Math.min((int)score / 20, 30));
+            maxTimer = Math.max((int)(-0.5 * score + 100), 10);
             //move player
             movePlayer();
-            timer++;
-            if(timer >= maxTimer)summonObstacle();
+            if(timer++ >= maxTimer)summonObstacle();
         }
     }
 
-    void movePlayer(){
+    public void movePlayer(){
         try{
             int button = Greenfoot.getMouseInfo().getButton();
             int getX = Greenfoot.getMouseInfo().getX();
@@ -68,32 +61,79 @@ public class TheWorld extends World
             }
         }
         catch(Exception e){
-            
+            e.printStackTrace();
         }
     }
 
-    void summonObstacle(){
-        int obChoice = r.nextInt((int)score);
-        int side = r.nextInt(4);
-        if(obChoice < score * 3/4 || score < 100){
-            int path = Math.min((int)score / 50, 2) + 1;
-            Spikeball sb = new Spikeball(side, this, r.nextInt(path));
+    public static int getScore(){
+        return (int)score;
+    }
 
+    private void summonObstacle(){
+        int obChoice = Greenfoot.getRandomNumber((int)score);
+        int side = Greenfoot.getRandomNumber(4);
+        Obstacle obs;
+        int obSpeed = 0;
+        if(obChoice < score * 3/4 || score < 100){
+            obChoice = Greenfoot.getRandomNumber(6);
+            obSpeed = Math.max(3, Math.min((int)(score * 0.02), 15));
+            if(obChoice < 3 || score < 30)obs = new LineBall(obSpeed);
+            else if(obChoice < 5 || score < 75)obs = new CurveBall(obSpeed);
+            else obs = new WaveBall(obSpeed);
+
+            switch(side){
+                case 0:
+                addObject(obs, Greenfoot.getRandomNumber(getWidth()), -5);
+                obs.setRotation(90);
+                break;
+
+                case 1:
+                addObject(obs, Greenfoot.getRandomNumber(getWidth()), getHeight() + 5);
+                obs.setRotation(-90);
+                break;
+
+                case 2:
+                addObject(obs, -5, Greenfoot.getRandomNumber(getHeight()));
+                break;
+
+                case 3:
+                addObject(obs, getWidth() + 5, Greenfoot.getRandomNumber(getHeight()));
+                obs.setRotation(180);
+                break;
+            }
+            obs.turn(Greenfoot.getRandomNumber(90) - 45);
+            if(Greenfoot.getRandomNumber(3) == 0 && !obs.getClass().equals(CurveBall.class)){
+                try{
+                    obs.turnTowards(player.getX(), player.getY());
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            timer = 0;
+            return;
         }else if(obChoice < score * 4/5 || score < 150){
-            Warning warning = new Warning(side, this);
+            obs = new LaserWarning((int)(1 / 0.0005 / score) + 50, side > 2);
         }else if(obChoice < score * 5/6 || score < 200){
-            addObject(new FollowerWarning(obSpeed), r.nextInt(getWidth()), r.nextInt(getHeight()));
-        }else if(obChoice < score * 6/7 || score < 250){
-            addObject(new Scope(), player.getX(), player.getY());
+            obs = new FollowerWarning((int)(1 / 0.0005 / score), (int)score);
+        }else{
+            obs = new Scope((int)(-0.02 * score + 22));
+            timer = 0;
+            addObject(obs, player.getX(), player.getY());
+            return;
         }
         timer = 0;
+        addObject(obs, Greenfoot.getRandomNumber(getWidth()), Greenfoot.getRandomNumber(getHeight()));
     }
 
     public void cheat(int score){
         this.score = score;
     }
-    
-    static int getCoins(){
-        return (int)score / 10;
+
+    public static boolean isStopped(){
+        return stopped;
+    }
+
+    public static void stop(){
+        stopped = true;
     }
 }

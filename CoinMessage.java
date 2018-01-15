@@ -1,27 +1,24 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class CoinMessage here.
+ * Temporarily appears to show how many coins are earned
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Enoch Poon
+ * 
  */
 public class CoinMessage extends FrontMessage
 {
     int timer = 255;
     public CoinMessage(int coins){
         setImage(new GreenfootImage("You gained " + coins + " coins!", 20, Color.YELLOW, new Color(0,0,0,0)));
-        Data.update((int)TheWorld.score, coins);
+        Data.update((int)TheWorld.getScore(), coins);
         if(coins == 0){
             timer = 0;
             getImage().setTransparency(0);
         }
         
     }
-    /**
-     * Act - do whatever the CoinMessage wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     public void act() 
     {
         if(timer == 0){
