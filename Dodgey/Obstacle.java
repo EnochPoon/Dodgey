@@ -42,7 +42,7 @@ public abstract class Obstacle extends Actor
     public void move(int speed){
         x += Math.cos(Math.toRadians(getRotation())) * speed;
         y += Math.sin(Math.toRadians(getRotation())) * speed;
-        setLocation((int)Math.round(x), (int)Math.round(y));
+        setLocation((int)x, (int)y);
     }
     
     @Override

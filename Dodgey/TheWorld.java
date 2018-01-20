@@ -43,7 +43,7 @@ public class TheWorld extends World
         if(!stopped){
 
             score += 0.1;
-            maxTimer = Math.max((int)(-0.5 * score + 100), 10);
+            maxTimer = Math.max((int)(-0.5 * score + 100), 5);
             //move player
             movePlayer();
             if(timer++ >= maxTimer)summonObstacle();
@@ -73,10 +73,10 @@ public class TheWorld extends World
         int obChoice = Greenfoot.getRandomNumber((int)score);
         int side = Greenfoot.getRandomNumber(4);
         Obstacle obs;
-        int obSpeed = 0;
+        int obSpeed = Math.max(3, Math.min((int)(score * 0.02), 15));
         if(obChoice < score * 3/4 || score < 100){
             obChoice = Greenfoot.getRandomNumber(6);
-            obSpeed = Math.max(3, Math.min((int)(score * 0.02), 15));
+            
             if(obChoice < 3 || score < 30)obs = new LineBall(obSpeed);
             else if(obChoice < 5 || score < 75)obs = new CurveBall(obSpeed);
             else obs = new WaveBall(obSpeed);
@@ -102,7 +102,7 @@ public class TheWorld extends World
                 break;
             }
             obs.turn(Greenfoot.getRandomNumber(90) - 45);
-            if(Greenfoot.getRandomNumber(3) == 0 && !obs.getClass().equals(CurveBall.class)){
+            if(Greenfoot.getRandomNumber(2) == 0 && !obs.getClass().equals(CurveBall.class)){
                 try{
                     obs.turnTowards(player.getX(), player.getY());
                 }catch(Exception e){

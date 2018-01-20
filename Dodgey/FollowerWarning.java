@@ -10,6 +10,10 @@ public class FollowerWarning extends Obstacle
 {
     private int tp;
     private int time;
+    /**
+     * time = lifetime for the Follower's life.
+     * speed = time until spawn Follower
+     */
     public FollowerWarning(int speed, int time){
         super(speed, false);
         this.time = time;
@@ -27,7 +31,7 @@ public class FollowerWarning extends Obstacle
 
     public void destroy(){
         if(tp > 255){
-            getWorld().addObject(new Follower(speed / 3, time), getX(), getY());
+            getWorld().addObject(new Follower(speed / 4, time), getX(), getY());
             getWorld().removeObject(this);
         }
     }
