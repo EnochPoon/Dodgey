@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Title extends Actor
 {
     public Title(){
-        setImage(new GreenfootImage("DODGEY (Beta)", 72, Color.RED, Color.BLACK));
+        setImage(new GreenfootImage(" DODGEY ", 72, Color.RED, Color.BLACK));
     }
     
     public void act() 
