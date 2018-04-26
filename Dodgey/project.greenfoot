@@ -1,5 +1,5 @@
 #Greenfoot properties
-#Sat Jan 20 13:58:11 EST 2018
+#Thu Apr 26 10:17:18 EDT 2018
 target24.type=ClassTarget
 target16.name=Title
 target13.editor.width=900
@@ -188,7 +188,7 @@ dependency10.from=TheWorld
 target4.type=ClassTarget
 dependency38.type=UsesDependency
 dependency54.to=TheWorld
-editor.fx.0.height=739
+editor.fx.0.height=0
 dependency3.type=UsesDependency
 class.Menu.superclass=greenfoot.World
 target13.showInterface=false
@@ -467,7 +467,7 @@ dependency57.type=UsesDependency
 target11.height=50
 target8.width=80
 dependency32.type=UsesDependency
-editor.fx.0.width=816
+editor.fx.0.width=0
 target22.type=ClassTarget
 target14.name=ScoreText
 target21.naviview.expanded=true
@@ -508,8 +508,8 @@ dependency19.to=Laser
 dependency9.type=UsesDependency
 target21.editor.height=700
 class.LaserWarning.image=laserbeam.png
-editor.fx.0.y=-4
-editor.fx.0.x=275
+editor.fx.0.y=0
+editor.fx.0.x=0
 dependency8.to=LaserWarning
 target26.showInterface=false
 class.Scope.superclass=Obstacle
@@ -575,8 +575,8 @@ target3.width=80
 dependency59.type=UsesDependency
 target5.naviview.expanded=true
 dependency34.type=UsesDependency
-target10.height=50
 target14.y=130
+target10.height=50
 target14.x=10
 target15.editor.height=700
 dependency38.to=Flash

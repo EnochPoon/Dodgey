@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Flash here.
+ * Flash effect when player is hit
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Enoch Poon
+ * 
  */
 public class Flash extends Actor
 {
@@ -28,6 +28,7 @@ public class Flash extends Actor
             getWorld().addObject(new RestartButton(), 400, 50);
             getWorld().addObject(new BackButton(), 400, 390);
             //getWorld().addObject(new CoinMessage(TheWorld.getScore()/10), 100, 390);
+            Data.update(TheWorld.getScore(), 0);
             getWorld().removeObject(this);
         }
 

@@ -8,8 +8,8 @@ import java.util.*;
  */
 public class ScoreText extends FrontMessage
 {
-    int score = 0;
-    static int highscore = 0;
+    public int score = 0;
+    public static int highscore = 0;
     public ScoreText(){
         highscore = Data.highscore;
         setImage(new GreenfootImage("Score: " + score + "\nHigh Score: " + highscore, 20, Color.BLACK, new Color(0,0,0,0)));
