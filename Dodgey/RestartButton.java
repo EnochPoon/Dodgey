@@ -16,7 +16,7 @@ public class RestartButton extends FrontMessage
     public void act() 
     {
         if(Greenfoot.mouseClicked(this)){
-            getWorld().addObject(new Fader(new TheWorld()), getWorld().getWidth()/2, getWorld().getHeight()/2);
+            getWorld().addObject(new BlackFader(new TheWorld()), getWorld().getWidth()/2, getWorld().getHeight()/2);
         }
     }    
 }

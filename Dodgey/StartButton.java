@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class StartButton here.
+ * Button to start the game.
+ * Appears only in Menu world
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author E Poon
  */
 public class StartButton extends Actor
 {
@@ -18,7 +18,7 @@ public class StartButton extends Actor
     public void act() 
     {
         if(Greenfoot.mouseClicked(this)){
-            getWorld().addObject(new Fader(new TheWorld()), getWorld().getWidth()/2, getWorld().getHeight()/2);
+            getWorld().addObject(new BlackFader(new TheWorld()), getWorld().getWidth()/2, getWorld().getHeight()/2);
         }
     }    
 }

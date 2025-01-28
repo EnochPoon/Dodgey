@@ -13,17 +13,13 @@ public class CurveBall extends Obstacle
     private final boolean rightTurn;
     public CurveBall(int speed){
         super(speed);
-        rightTurn = (Greenfoot.getRandomNumber(2) == 1)? true: false;
+        rightTurn = Greenfoot.getRandomNumber(2) == 1;
     }
-    
+
     public void work() 
     {
         move(speed);
-        turnTime += speed;
-        if(turnTime >= maxTurnTime){
-            turn(rightTurn? 1: -1);
-            turnTime = 0;
-            
-        }
+        turn(0.1 * speed * (rightTurn? 1: -1));
+
     }    
 }

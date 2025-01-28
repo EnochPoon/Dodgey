@@ -19,7 +19,7 @@ public class BackButton extends FrontMessage
     public void act() 
     {
         if(Greenfoot.mouseClicked(this)){
-            getWorld().addObject(new Fader(new Menu()), getWorld().getWidth()/2, getWorld().getHeight()/2);
+            getWorld().addObject(new BlackFader(new Menu()), getWorld().getWidth()/2, getWorld().getHeight()/2);
         }
     }    
 }

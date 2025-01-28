@@ -17,25 +17,23 @@ public class TheWorld extends World
     public TheWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1, false);
+        super(800, 600, 1, false);
         prepare();
         score = 0.0;
         timer = 0;
         maxTimer = 0;
-        //setActOrder(TheWorld.class);
-
     }
 
     public void prepare(){
         player = new Player();
         addObject(player, getWidth()/2, getHeight()/2);
         addObject(new ScoreText(), 100, 50);
-        addObject(new Fader(), getWidth()/2, getHeight()/2);
-        setPaintOrder(Fader.class, FrontMessage.class, Flash.class, Scope.class, Obstacle.class, Player.class);
+        addObject(new BlackFader(), getWidth()/2, getHeight()/2);
+        setPaintOrder(BlackFader.class, FrontMessage.class, Flash.class, Scope.class, Obstacle.class, Player.class);
     }
 
     public void act(){
-        if(start && getObjects(Fader.class).size() == 0){
+        if(start && getObjects(BlackFader.class).size() == 0){
             start = false;
             stopped = false;
         }
@@ -49,16 +47,23 @@ public class TheWorld extends World
             if(timer++ >= maxTimer)summonObstacle();
         }
     }
-
+    
+    /**
+     * Moves the player to the mouse on click
+     */
     public void movePlayer(){
         try{
-            int button = Greenfoot.getMouseInfo().getButton();
-            int getX = Greenfoot.getMouseInfo().getX();
-            int getY = Greenfoot.getMouseInfo().getY();
-            if(button == 1 && getX > 0 && getX < getWidth() && getY > 0 && getY < getHeight()){
-                removeObjects(getObjects(Marker.class));
-                addObject(new Marker(), Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
+            MouseInfo mi = Greenfoot.getMouseInfo();
+            if (mi != null) {
+                int button = Greenfoot.getMouseInfo().getButton();
+                int getX = Greenfoot.getMouseInfo().getX();
+                int getY = Greenfoot.getMouseInfo().getY();
+                if(button == 1 && getX > 0 && getX < getWidth() && getY > 0 && getY < getHeight()){
+                    removeObjects(getObjects(Marker.class));
+                    addObject(new Marker(), Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
+                }
             }
+
         }
         catch(Exception e){
             e.printStackTrace();
@@ -76,30 +81,31 @@ public class TheWorld extends World
         int obSpeed = Math.max(3, Math.min((int)(score * 0.02), 15));
         if(obChoice < score * 3/4 || score < 100){
             obChoice = Greenfoot.getRandomNumber(6);
-            
-            if(obChoice < 3 || score < 30)obs = new LineBall(obSpeed);
-            else if(obChoice < 5 || score < 75)obs = new CurveBall(obSpeed);
+
+            if (obChoice < 3 || score < 30)obs = new LineBall(obSpeed);
+            else if (obChoice < 5 || score < 75)obs = new CurveBall(obSpeed);
             else obs = new WaveBall(obSpeed);
 
-            switch(side){
+            // determine spawning location
+            switch (side){
                 case 0:
-                addObject(obs, Greenfoot.getRandomNumber(getWidth()), -5);
-                obs.setRotation(90);
-                break;
+                    addObject(obs, Greenfoot.getRandomNumber(getWidth()), -5);
+                    obs.setRotation(90);
+                    break;
 
                 case 1:
-                addObject(obs, Greenfoot.getRandomNumber(getWidth()), getHeight() + 5);
-                obs.setRotation(-90);
-                break;
+                    addObject(obs, Greenfoot.getRandomNumber(getWidth()), getHeight() + 5);
+                    obs.setRotation(-90);
+                    break;
 
                 case 2:
-                addObject(obs, -5, Greenfoot.getRandomNumber(getHeight()));
-                break;
+                    addObject(obs, -5, Greenfoot.getRandomNumber(getHeight()));
+                    break;
 
                 case 3:
-                addObject(obs, getWidth() + 5, Greenfoot.getRandomNumber(getHeight()));
-                obs.setRotation(180);
-                break;
+                    addObject(obs, getWidth() + 5, Greenfoot.getRandomNumber(getHeight()));
+                    obs.setRotation(180);
+                    break;
             }
             obs.turn(Greenfoot.getRandomNumber(90) - 45);
             if(Greenfoot.getRandomNumber(2) == 0 && !obs.getClass().equals(CurveBall.class)){

@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Enoch Poon 
  * 
  */
-public class Player extends Actor
+public class Player extends SuperSmoothMover
 {
     
     public void act() 

@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Enoch Poon
  * 
  */
-public abstract class Obstacle extends Actor
+public abstract class Obstacle extends SuperSmoothMover
 {
     protected boolean entered;
     protected int speed;
@@ -24,7 +24,7 @@ public abstract class Obstacle extends Actor
         this.isDeadly = isDeadly;
     }
 
-    public void act() 
+    public final void act() 
     {
         if(start){
             x = getX();
@@ -38,19 +38,19 @@ public abstract class Obstacle extends Actor
 
     public abstract void work();
 
-    @Override
-    public void move(int speed){
-        x += Math.cos(Math.toRadians(getRotation())) * speed;
-        y += Math.sin(Math.toRadians(getRotation())) * speed;
-        setLocation((int)x, (int)y);
-    }
+    // @Override
+    // public void move(int speed){
+        // x += Math.cos(Math.toRadians(getRotation())) * speed;
+        // y += Math.sin(Math.toRadians(getRotation())) * speed;
+        // setLocation((int)x, (int)y);
+    // }
     
-    @Override
-    public void setLocation(int x, int y){
-        this.x = x;
-        this.y = y;
-        super.setLocation(x, y);
-    }
+    // @Override
+    // public void setLocation(int x, int y){
+        // this.x = x;
+        // this.y = y;
+        // super.setLocation(x, y);
+    // }
     
     public void destroy(){
         if(getX() < -20 || getY() < -20 || getX() > getWorld().getWidth() + 20 || getY() > getWorld().getHeight() + 20){

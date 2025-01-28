@@ -19,7 +19,7 @@ public class Scope extends Obstacle
         super(speed, false);
         
     }
-
+    
     @Override
     public void work() 
     {
