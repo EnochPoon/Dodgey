@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Laser here.
+ * Long laser that lasts for some time
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Enoch Poon
  */
 public class Laser extends Obstacle
 {
