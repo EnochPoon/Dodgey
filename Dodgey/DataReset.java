@@ -4,8 +4,7 @@ import java.io.*;
 /**
  * Resets all data
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Enoch Poon
  */
 public class DataReset extends Actor
 {
