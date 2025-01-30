@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Marker here.
+ * Invisible Actor. When placed, the Player moves towards it
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Enoch Poon 
  */
 public class Marker extends Actor
 {
